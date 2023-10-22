@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="./css-files/search.css">
+    <title>Search | Airbnb</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <img src="./images/logo red.png" alt="">
+            </a>
+
+            <form action="#" action="get" id="search">
+                <input type="text"  name="place"  id="place"  class="input" placeholder="Search...">
+                <div id="v-rule"></div>
+                <input type="text" name="AddDate" id="date" class="input" placeholder="Add Date">
+                <div id="v-rule"></div>
+                <input type="text" name="AddGuest" id="guest" class="input" placeholder="Add Guest">
+                <button type="submit" class="btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M16.0417 16.0416L12.9167 12.9166M3.95834 9.16658C3.95834 6.2901 6.29019 3.95825 9.16668 3.95825C12.0432 3.95825 14.375 6.2901 14.375 9.16658C14.375 12.0431 12.0432 14.3749 9.16668 14.3749C6.29019 14.3749 3.95834 12.0431 3.95834 9.16658Z"
+                            stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </form>
+
+            <div class="user-menu">
+                <p>Become a Host</p>
+                <p><i class="fa-solid fa-globe"></i></p>
+                <div class="user" style="display: flex; align-items: center;">
+                    <div><i class="fa-solid fa-bars"></i></div>
+                    <div><img src="./images/Avatar Base.png" alt=""></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="filters">
+            <button type="button" class="btn">
+                <span>Price</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.7083 8.95825L10 11.8749L7.29167 8.95825" stroke="#374151" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+
+            <button type="button" class="btn">
+                <span>Types of piece</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.7083 8.95825L10 11.8749L7.29167 8.95825" stroke="#374151" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+
+            <button type="button" class="btn">
+                Free cancellation
+            </button>
+
+            <button type="button" class="btn">
+                Wifi
+            </button>
+
+            <button type="button" class="btn">
+                Kitchen
+            </button>
+
+            <button type="button" class="btn">
+                Air conditioning
+            </button>
+
+            <button type="button" class="btn">
+                Washer
+            </button>
+
+            <button type="button" class="btn">
+                Iron
+            </button>
+
+            <button type="button" class="btn">
+                Dedicated workspace
+            </button>
+
+            <button type="button" class="btn">
+                Free parking
+            </button>
+
+            <button type="button" class="btn">
+                Dryer
+            </button>
+
+            <button type="button" class="btn">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.95837 6.66675H6.04171" stroke="#374151" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M10.625 6.66675H16.0417" stroke="#374151" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M3.95837 13.3333H10.2084" stroke="#141414" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M14.7916 13.3333H16.0416" stroke="#141414" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path
+                        d="M10.2084 6.66675C10.2084 7.70228 9.36891 8.54175 8.33337 8.54175C7.29784 8.54175 6.45837 7.70228 6.45837 6.66675C6.45837 5.63121 7.29784 4.79175 8.33337 4.79175C9.36891 4.79175 10.2084 5.63121 10.2084 6.66675Z"
+                        stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M14.375 13.3333C14.375 14.3688 13.5355 15.2083 12.5 15.2083C11.4645 15.2083 10.625 14.3688 10.625 13.3333C10.625 12.2977 11.4645 11.4583 12.5 11.4583C13.5355 11.4583 14.375 12.2977 14.375 13.3333Z"
+                        stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span>Filter</span>
+            </button>
+        </div>
+
+        
+
+        <div class="content">
+            <div class="inner" id="container">
+                <p class="heading">200+ stays in Bordeaux</p>
+                <div class="cards">
+                            <!--all my cards are being stored here-->
+                </div>
+            </div>
+            <div class="map-container" style="width: 50%;max-height: 100vh;">
+                <div class="map" id="map" style="height: 100%;width: 100%;"></div>
+            </div>
+        </div>
+
+        
+
+
+
+    </main>
+
+    <footer>
+        <!-- Footer will go here -->
+        <div class="foot">
+            <div class="col">
+                <h2>Support</h2>
+                <ul>
+                    <li>
+                        <a href="#">Help Center</a>
+                    </li>
+                    <li>
+                        <a href="#">Safety Information</a>
+                    </li>
+                    <li>
+                        <a href="#">Cancellation options</a>
+                    </li>
+                    <li>
+                        <a href="#">Our COVID-19 Response</a>
+                    </li>
+                    <li>
+                        <a href="#">Supporting people with disabilities</a>
+                    </li>
+                    <li>
+                        <a href="#">Report a neighborhood concern</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h2>Community</h2>
+                <ul>
+                    <li>
+                        <a href="#">Airbnb.org disaster relief housing</a>
+                    </li>
+                    <li>
+                        <a href="#">Support Afghan refugees</a>
+                    </li>
+                    <li>
+                        <a href="#">Celebrating diversity & belonging</a>
+                    </li>
+                    <li>
+                        <a href="#">Combating discrimination</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h2>Hosting</h2>
+                <ul>
+                    <li>
+                        <a href="#">Try hosting</a>
+                    </li>
+                    <li>
+                        <a href="#">Aircover: protection for Hosts</a>
+                    </li>
+                    <li>
+                        <a href="#">Explore hosting resources</a>
+                    </li>
+                    <li>
+                        <a href="#">Visit our community forum</a>
+                    </li>
+                    <li>
+                        <a href="#">How to host resposibly</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col">
+                <h2>About</h2>
+                <ul>
+                    <li>
+                        <a href="#">Newsroom</a>
+                    </li>
+                    <li>
+                        <a href="#">Learn about new features</a>
+                    </li>
+                    <li>
+                        <a href="#">Lette from our founders</a>
+                    </li>
+                    <li>
+                        <a href="#">Careers</a>
+                    </li>
+                    <li>
+                        <a href="#">Investors</a>
+                    </li>
+                    <li>
+                        <a href="#">Airbnb Luxe</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr style="margin-block: 10px;">
+        <section class="footer-2">
+            <div>
+                <p>© 2022 Airbnb, Inc.</p>
+                <p>Privacy</p> 
+                <p>Terms</p> 
+                <p>Sitemap</p>
+            </div>
+    
+            <div>
+                <p><i class="fa-solid fa-globe"></i> English (US)</p>
+                <p><i class="fa-solid fa-dollar-sign"></i> USD</p>
+            </div>
+    
+            <div class="social">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+            </div>  
+        </section>
+
+    </footer>
+
+    <!-- <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="./assets/core/core.js"></script> -->
+    <script src="./js-files/search.js"></script>
+</body>
+
+</html>
