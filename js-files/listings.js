@@ -8,6 +8,7 @@ const activeCard = cardsArr[index];
 
 
 
+
 document.querySelector('.title').textContent = activeCard.name;
 
 document.querySelector('.top-desc').innerHTML = `
@@ -132,3 +133,20 @@ document.querySelector(".card").innerHTML = `
                 </table>
             
             </div>`
+
+       
+            
+
+
+                //id
+var map = L.map('map').setView([activeCard.lat, activeCard.lng], 13);
+
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+maxZoom: 19,
+attribution: '&copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a>'
+}).addTo(map);
+
+
+
+var marker = new L.marker([activeCard.lat, activeCard.lng]).bindPopup(activeCard.name).addTo(map);

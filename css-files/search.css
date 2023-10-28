@@ -167,6 +167,7 @@ li{
     align-items: center;
     margin-block: 20px;
     transition: all .5s ease;
+    position: relative;
 }
 
 .card>div{
@@ -192,3 +193,39 @@ li{
     background-color: #f0eeee;
     border-radius: 10px;
 }
+
+
+.direction-Btn{
+    position: absolute;
+    right:10px;
+    bottom: 70px;
+    z-index: 1;
+    padding: 5px;
+    background-color: rgb(215, 37, 37);
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+
+.booking-cost{
+    position: absolute;
+    right:12px;
+    bottom: 100px;
+    z-index: 1;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+}
+
+.content{
+    position: relative;
+}
+
+.map-container{
+    position: sticky;
+    top: 0px;
+}
+
