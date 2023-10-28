@@ -55,7 +55,7 @@ function addDataToHTML(){
 
         bookingCostButton.addEventListener("click", function(event){
             event.stopPropagation();
-            openBookingCostBreakdown();
+            openBookingCostBreakdown(element);
         })
 
 
@@ -73,6 +73,56 @@ function addDataToHTML(){
             window.open(url, "_blank");
         }
 
+        function openBookingCostBreakdown(listing){
+            // Calculate additional fees and total cost
+            console.log(listing);
+            console.log(element.price.priceItems[0].title.split(' x ')[0]);
+            const priceStr = element.price.priceItems[0].title.split(' x ')[0];
+            const currency = priceStr[0];
+            let price = 0;
+            for(let i= 1; i<priceStr.length; i++){
+                if(priceStr[i] === ","){
+                    continue;
+                }
+                
+                price = (price*10) + parseInt(priceStr[i], 10) ;
+            }
+            
+            console.log(price);
+            
+            const additionalFees = price * 0.10; // Assuming additional fees are 10% of base price
+            const totalCost = price + additionalFees;
+
+            // Create a modal dialog box
+            const modal = document.createElement("div");
+            modal.style.display = "block";
+            modal.style.width = "300px";
+            modal.style.height = "200px";
+            modal.style.backgroundColor = "#fff";
+            modal.style.position = "fixed";
+            modal.style.top = "50%";
+            modal.style.right = "10%";
+            modal.style.transform = "translate(-50%, -50%)";
+            modal.style.padding = "20px";
+            modal.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
+
+            // Add booking cost breakdown to the modal
+            modal.innerHTML = `
+                <h2>Booking Cost Breakdown</h2>
+                <p>Base Rate: ${currency}${price.toFixed(2)}</p>
+                <p>Additional Fees: ${currency}${additionalFees.toFixed(2)}</p>
+                <p>Total Cost: ${currency}${totalCost.toFixed(2)}</p>
+            `;
+
+            // Add a close button to the modal
+            const closeButton = document.createElement("button");
+            closeButton.innerText = "Close";
+            closeButton.addEventListener("click", () => modal.style.display = "none");
+            modal.appendChild(closeButton);
+
+            // Add the modal to the body
+            document.body.appendChild(modal);
+        }
 
         locations.push([element.name, element.lat, element.lng]);
         card.addEventListener("click", ()=>{

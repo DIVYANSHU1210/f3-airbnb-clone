@@ -4,7 +4,7 @@ const index = window.localStorage.getItem("activeCardIndex");
 const activeCard = cardsArr[index];
 
 
-
+console.log(activeCard);
 
 
 
